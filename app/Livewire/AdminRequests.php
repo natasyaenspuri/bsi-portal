@@ -7,6 +7,7 @@ use App\Models\RequestModel;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use App\Notifications\RequestStatusUpdated;
 
 #[Layout('layouts.admin')]
 class AdminRequests extends Component
@@ -94,6 +95,8 @@ class AdminRequests extends Component
 
             // 3. Save Admin Response
             $this->selectedRequest->update(['admin_response' => $responseMessage, 'admin_id' => auth()->id()]);
+            // 4. Notify User
+            $this->selectedRequest->user->notify(new RequestStatusUpdated($this->selectedRequest));
         });
 
         $this->loadRequests();
@@ -109,6 +112,8 @@ class AdminRequests extends Component
             'admin_response' => 'Maaf, permintaan Anda tidak dapat diproses saat ini. Silakan hubungi cabang terdekat.',
             'admin_id' => auth()->id()
         ]);
+
+        $this->selectedRequest->user->notify(new RequestStatusUpdated($this->selectedRequest));
 
         $this->loadRequests();
          $this->selectRequest($this->selectedRequestId);

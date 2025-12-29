@@ -67,50 +67,66 @@
 
             <!-- Chat Area -->
             <div class="flex-1 p-4 md:p-6 overflow-y-auto bg-[#e5ddd5]/20" style="background-image: url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png');">
-                <!-- User Bubble -->
-                <div class="flex justify-end mb-6">
-                    <div class="bg-[#00A39D] text-white p-4 rounded-l-xl rounded-tr-xl max-w-[85%] md:max-w-lg shadow-md relative">
+                <!-- User/Nasabah Bubble (Left side like WhatsApp) -->
+                <div class="flex justify-start mb-6">
+                    <div class="bg-white border text-gray-800 p-4 rounded-r-xl rounded-tl-xl max-w-[85%] md:max-w-lg shadow-md relative">
                          <!-- Triangle -->
-                         <div class="absolute top-0 -right-2 w-0 h-0 border-t-[10px] border-t-[#00A39D] border-r-[10px] border-r-transparent"></div>
+                         <div class="absolute top-0 -left-2 w-0 h-0 border-t-[10px] border-t-white border-l-[10px] border-l-transparent transform scale-x-[-1]"></div>
                          
-                        <p class="font-bold border-b border-teal-400/50 pb-2 mb-2 text-teal-50 text-sm tracking-wide">
+                        <p class="font-bold border-b border-gray-200 pb-2 mb-2 text-gray-600 text-sm tracking-wide">
                             REQUEST: <?php echo e(strtoupper(str_replace('_', ' ', $selectedRequest->type))); ?>
 
                         </p>
                         <div class="text-sm space-y-1">
                             <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(is_array($selectedRequest->payload)): ?>
-                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $selectedRequest->payload; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <div class="flex flex-col sm:flex-row">
-                                        <span class="opacity-75 sm:w-32 font-medium text-teal-100"><?php echo e(ucfirst(str_replace('_', ' ', $key))); ?>:</span>
-                                        <span class="font-semibold break-words"><?php echo e($value); ?></span>
-                                    </div>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                                <div class="bg-gray-50 rounded-lg border border-gray-100 overflow-hidden">
+                                    <table class="w-full text-sm text-left">
+                                        <tbody>
+                                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $selectedRequest->payload; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <tr class="border-b border-gray-100 last:border-b-0">
+                                                <td class="px-3 py-2 bg-gray-100/50 font-medium text-gray-500 w-1/3 align-top">
+                                                    <?php echo e(ucwords(str_replace('_', ' ', $key))); ?>
+
+                                                </td>
+                                                <td class="px-3 py-2 font-semibold text-gray-800 break-all">
+                                                    <?php echo e($value); ?>
+
+                                                </td>
+                                            </tr>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             <?php else: ?>
-                                <p><?php echo e($selectedRequest->payload); ?></p>
+                                <div class="p-3 bg-gray-50 rounded border border-gray-200 text-gray-700">
+                                    <?php echo e($selectedRequest->payload); ?>
+
+                                </div>
                             <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                         </div>
-                        <div class="text-[10px] text-teal-200 text-right mt-2">
+                        <div class="text-[10px] text-gray-400 text-right mt-2">
                             <?php echo e($selectedRequest->created_at->format('H:i, d M Y')); ?>
 
                         </div>
                     </div>
                 </div>
 
-                <!-- Admin Response Bubble -->
+                <!-- Admin Response Bubble (Right side like WhatsApp) -->
                 <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($selectedRequest->admin_response): ?>
-                <div class="flex justify-start mb-6">
-                    <div class="bg-white border text-gray-800 p-4 rounded-r-xl rounded-tl-xl max-w-[85%] md:max-w-lg shadow-md relative">
+                <div class="flex justify-end mb-6">
+                    <div class="bg-[#d9fdd3] text-gray-800 p-4 rounded-l-xl rounded-tr-xl max-w-[85%] md:max-w-lg shadow-sm relative">
                         <!-- Triangle -->
-                        <div class="absolute top-0 -left-2 w-0 h-0 border-t-[10px] border-t-white border-l-[10px] border-l-transparent transform scale-x-[-1]"></div>
+                        <div class="absolute top-0 -right-2 w-0 h-0 border-t-[10px] border-t-[#d9fdd3] border-r-[10px] border-r-transparent"></div>
 
                         <p class="text-sm leading-relaxed"><?php echo e($selectedRequest->admin_response); ?></p>
                         
-                        <div class="flex justify-between items-center mt-3 pt-2 border-t border-gray-100">
-                             <p class="text-[10px] text-gray-400 flex items-center gap-1 font-bold tracking-wider text-[#F39C12]">
-                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                ADMIN
-                            </p>
-                            <span class="text-[10px] text-gray-400"><?php echo e($selectedRequest->updated_at->format('H:i')); ?></span>
+                        <div class="flex justify-between items-center mt-2 pt-1">
+                             <!-- Status/Time -->
+                             <div class="flex items-center gap-1 ml-auto">
+                                <span class="text-[10px] text-gray-500"><?php echo e($selectedRequest->updated_at->format('H:i')); ?></span>
+                                <!-- Double Check Icon (Blue for read/processed) -->
+                                <svg class="w-3 h-3 text-blue-500" fill="currentColor" viewBox="0 0 16 15"><path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-7.655a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l3.272-3.991a.366.366 0 0 0-.064-.512z"/></svg>
+                             </div>
                         </div>
                     </div>
                 </div>

@@ -105,8 +105,53 @@
                     </div>
         
                     <!-- Settings Dropdown -->
-                    <div class="hidden sm:flex sm:items-center sm:ms-6">
-                        <?php if (isset($component)) { $__componentOriginaldf8083d4a852c446488d8d384bbc7cbe = $component; } ?>
+            <div class="hidden sm:flex sm:items-center sm:ms-6">
+                <!-- Notifications Dropdown -->
+                <?php if (isset($component)) { $__componentOriginaldf8083d4a852c446488d8d384bbc7cbe = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginaldf8083d4a852c446488d8d384bbc7cbe = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.dropdown','data' => ['align' => 'right','width' => '60']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('dropdown'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['align' => 'right','width' => '60']); ?>
+                     <?php $__env->slot('trigger', null, []); ?> 
+                         <button class="relative p-2 text-teal-100 hover:text-white transition">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 0 11-6 0v-1m6 0H9"></path></svg>
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(auth()->user()->unreadNotifications->count() > 0): ?>
+                                <span class="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full border border-teal-600 animate-pulse"></span>
+                            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                        </button>
+                     <?php $__env->endSlot(); ?>
+
+                     <?php $__env->slot('content', null, []); ?> 
+                         <div class="px-4 py-2 border-b text-xs font-semibold text-gray-400 uppercase">
+                            Notifications
+                        </div>
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__empty_1 = true; $__currentLoopData = auth()->user()->unreadNotifications->take(5); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                            <div class="px-4 py-3 border-b border-gray-100 last:border-0 hover:bg-gray-50 text-sm text-gray-600">
+                                <p class="font-bold text-gray-800"><?php echo e($notification->data['message'] ?? 'New Notification'); ?></p>
+                                <p class="text-xs text-gray-500 mt-0.5"><?php echo e($notification->created_at->diffForHumans()); ?></p>
+                            </div>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                            <div class="px-4 py-3 text-sm text-gray-500 text-center">
+                                No new notifications
+                            </div>
+                        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                     <?php $__env->endSlot(); ?>
+                 <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginaldf8083d4a852c446488d8d384bbc7cbe)): ?>
+<?php $attributes = $__attributesOriginaldf8083d4a852c446488d8d384bbc7cbe; ?>
+<?php unset($__attributesOriginaldf8083d4a852c446488d8d384bbc7cbe); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginaldf8083d4a852c446488d8d384bbc7cbe)): ?>
+<?php $component = $__componentOriginaldf8083d4a852c446488d8d384bbc7cbe; ?>
+<?php unset($__componentOriginaldf8083d4a852c446488d8d384bbc7cbe); ?>
+<?php endif; ?>
+                <?php if (isset($component)) { $__componentOriginaldf8083d4a852c446488d8d384bbc7cbe = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginaldf8083d4a852c446488d8d384bbc7cbe = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.dropdown','data' => ['align' => 'right','width' => '48']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('dropdown'); ?>

@@ -29,7 +29,7 @@
                                     <a href="<?php echo e(url('/dashboard')); ?>" class="text-[#00A39D] hover:text-[#008f8a] font-semibold">Dashboard</a>
                                 <?php else: ?>
                                     <a href="<?php echo e(route('login')); ?>" class="text-gray-600 hover:text-[#00A39D] font-medium transition">Log in</a>
-                                    <a href="<?php echo e(route('register')); ?>" class="bg-[#00A39D] hover:bg-[#008f8a] text-white px-4 py-2 rounded-lg font-medium transition shadow-md hover:shadow-lg">Register</a>
+                                    <a href="<?php echo e(route('register')); ?>" class="ml-2 text-sm text-teal-600 hover:text-teal-800 font-medium">Register Akun</a>
                                 <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                             </div>
                         <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
@@ -47,15 +47,15 @@
             <div class="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row items-center gap-12">
                 <div class="max-w-2xl">
                     <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-6 leading-tight">
-                        Layanan Perbankan Syariah <br>
-                        <span class="text-[#F39C12]">Mudah, Cepat, dan Berkah</span>
+                        Portal Layanan Operasional <br>
+                        <span class="text-[#F39C12]">Efisien, Terpusat, dan Aman</span>
                     </h1>
                     <p class="text-lg sm:text-xl text-teal-100 mb-8 leading-relaxed max-w-lg">
-                        Ajukan pembukaan rekening, pemblokiran, atau pembaruan data nasabah secara online tanpa perlu antre di cabang.
+                        Sistem terintegrasi untuk pengelolaan data nasabah, pembukaan rekening, dan layanan pemblokiran demi mendukung kinerja operasional cabang.
                     </p>
                     <div class="flex gap-4">
-                        <a href="<?php echo e(route('register')); ?>" class="bg-[#F39C12] text-white px-8 py-3 rounded-lg font-bold text-lg hover:bg-yellow-600 transition shadow-lg transform hover:-translate-y-1">
-                            Buka Rekening Sekarang
+                        <a href="<?php echo e(route('login')); ?>" class="bg-[#F39C12] text-white px-8 py-3 rounded-lg font-bold text-lg hover:bg-yellow-600 transition shadow-lg transform hover:-translate-y-1">
+                            Akses Portal
                         </a>
                         <a href="#features" class="border border-white/30 hover:bg-white/10 text-white px-8 py-3 rounded-lg font-semibold text-lg transition">
                             Pelajari Lebih Lanjut
@@ -96,9 +96,9 @@
                         <div class="w-14 h-14 bg-teal-100 rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#00A39D] transition duration-300">
                             <svg class="w-8 h-8 text-[#00A39D] group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path></svg>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Buka Rekening Online</h3>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Input Data Nasabah</h3>
                         <p class="text-gray-500 leading-relaxed">
-                            Nikmati kemudahan membuka rekening tabungan syariah tanpa perlu datang ke kantor cabang. Cukup isi form dan upload KTP.
+                            Permudah proses pengajuan rekening baru nasabah. Input data dan dokumen secara digital untuk verifikasi yang lebih cepat.
                         </p>
                     </div>
 
@@ -133,8 +133,8 @@
                 <h2 class="text-3xl font-bold mb-6">Siap Menjadi Bagian dari Bank Syariah Indonesia?</h2>
                 <p class="text-teal-100 text-lg mb-8">Bergabunglah dengan jutaan nasabah lainnya yang telah memilih layanan perbankan yang amanah dan modern.</p>
                 <div class="flex justify-center gap-4">
-                    <a href="<?php echo e(route('register')); ?>" class="bg-white text-[#00A39D] px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition shadow-lg">
-                        Daftar Sekarang
+                    <a href="<?php echo e(route('login')); ?>" class="bg-white text-[#00A39D] px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition shadow-lg">
+                        Masuk Sekarang
                     </a>
                 </div>
             </div>

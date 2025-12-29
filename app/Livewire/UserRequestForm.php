@@ -5,6 +5,9 @@ namespace App\Livewire;
 use Livewire\Component;
 
 use App\Models\RequestModel;
+use App\Models\User;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\NewRequestNotification;
 
 class UserRequestForm extends Component
 {
@@ -26,7 +29,7 @@ class UserRequestForm extends Component
         if ($this->type == 'new_account') {
             $rules['no_hp'] = 'required|numeric|digits_between:10,15';
         } elseif ($this->type == 'block_account') {
-            $rules['no_rekening'] = 'required|numeric|digits_between:10,20';
+            $rules['no_rekening'] = 'required|numeric|digits_between:7,20';
         }
 
         $this->validate($rules);
@@ -43,12 +46,18 @@ class UserRequestForm extends Component
             $payload['no_rekening'] = $this->no_rekening;
         }
 
-        RequestModel::create([
+        $request = RequestModel::create([
             'user_id' => auth()->id(),
             'type' => $this->type,
             'payload' => $payload,
             'status' => 'pending'
         ]);
+
+        // Notify Admins
+        $admins = User::where('role', 'admin')->get();
+        if ($admins->count() > 0) {
+            Notification::send($admins, new NewRequestNotification($request));
+        }
 
         $this->reset(['nama_lengkap', 'nik', 'no_hp', 'no_rekening', 'reason']);
         

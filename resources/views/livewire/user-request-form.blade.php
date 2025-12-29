@@ -40,7 +40,6 @@
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2">No. Rekening Nasabah (Yang akan diblokir)</label>
             <input wire:model="no_rekening" type="text" maxlength="20" placeholder="xxxxxxxxxx" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-teal-500 focus:border-teal-500">
-            @error('no_rekening') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
         </div>
         @endif
         

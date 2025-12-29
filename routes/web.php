@@ -15,6 +15,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/notifications/mark-read', [App\Http\Controllers\NotificationController::class, 'markAllRead'])->name('img_notifications_mark_all_read');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
